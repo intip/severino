@@ -11,7 +11,7 @@ from django.template import RequestContext
 # Imports from your apps
 
 
-def hello(request):
+def homepage(request):
     """
     Doc string
     """
