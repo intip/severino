@@ -3,16 +3,11 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from yawdadmin import admin_site
-
 admin.autodiscover()
-admin_site._registry.update(admin.site._registry)
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
-admin.autodiscover()
-admin_site._registry.update(admin.site._registry)
 
 urlpatterns = patterns(
     '',
