@@ -1,0 +1,10 @@
+-r base.txt
+
+django-debug-toolbar
+django-pdb
+coverage>=3.6
+django-discover-runner>=0.2.2
+model-mommy
+setuptools>=0.8
+mock
+ipython
