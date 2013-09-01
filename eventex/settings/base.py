@@ -106,7 +106,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'yawdadmin.middleware.PopupMiddleware',
 )
 
 ROOT_URLCONF = 'eventex.urls'
@@ -139,7 +138,6 @@ INSTALLED_APPS = (
     # third apps
     'south',
     'django_extensions',
-    'yawdadmin',
     'django.contrib.admin',
 )
 
@@ -171,11 +169,3 @@ LOGGING = {
         },
     }
 }
-
-# CONFIGURE THE YWAD-ADMIN PROPRITIES
-
-ADMIN_SITE_NAME = 'My Admin Site'
-ADMIN_SITE_DESCRIPTION = 'This is a private site.  Please don"t hack me'
-ADMIN_SITE_DESCRIPTION = None
-ADMIN_SITE_LOGO_HTML = '<div id="myproject-logo hidden-phone">Logo</div>'
-ADMIN_DISABLE_APP_INDEX = True
