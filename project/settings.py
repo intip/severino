@@ -134,6 +134,7 @@ INSTALLED_APPS = (
 
     # my apps
     'core',
+    'erp',
 
     # third apps
     'south',
