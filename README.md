@@ -1,20 +1,16 @@
-# project com django 1.5 e padrao de estrutura
+# Project template using django 1.5 structure
 
-## Instalação
+## Installing & running
 ```
-$ pip install -r project/requirements/dev.txt
-$ python manage.py syncdb --settings=project.settings.local
-$ python manage.py runserver --settings=project.settings.local
-```
-
-## Executar o shell do django
-```
-$ python manage.py shell --settings=project.settings.local
+$ django-admin.py startproject --template=https://github.com/intip/project-template/archive/master.zip project
+$ pip install -r project/requirements.txt
+$ python manage.py syncdb --migrate
+$ python manage.py runserver
 ```
 
-## Criando novas apps
+## Creating new apps
 ```
-$ python manage.py startapp --template https://github.com/lucassimon/django-app-template/zipball/master app_name
+$ python manage.py startapp --template=core app_name
 ```
 
 [Leia](https://github.com/lucassimon/django-app-template/)
