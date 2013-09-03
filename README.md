@@ -1,15 +1,15 @@
-# Eventex com django 1.5 e padrao de estrutura
+# project com django 1.5 e padrao de estrutura
 
 ## Instalação
 ```
-$ pip install -r eventex/requirements/dev.txt 
-$ python manage.py syncdb --settings=eventex.settings.local
-$ python manage.py runserver --settings=eventex.settings.local
+$ pip install -r project/requirements/dev.txt
+$ python manage.py syncdb --settings=project.settings.local
+$ python manage.py runserver --settings=project.settings.local
 ```
 
 ## Executar o shell do django
 ```
-$ python manage.py shell --settings=eventex.settings.local
+$ python manage.py shell --settings=project.settings.local
 ```
 
 ## Criando novas apps
@@ -31,7 +31,7 @@ PEP 8 describes coding conventions such as:
 + “Use 4 spaces per indentation level.”
 + “Separate top-level function and class de nitions with two blank lines.”
 + “Method de nitions inside a class are separated by a single blank line.”
-       
+
 All the Python les in your Django projects should follow PEP 8. If you have trouble remembering
 the PEP 8 guidelines, nd a plugin for your code editor that checks your code as you type.
 
