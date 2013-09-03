@@ -1,0 +1,16 @@
+Django>=1.5.2
+South>=0.8.1
+Unipath>=1.0
+psycopg2
+wsgiref>=0.1.2
+django-extensions
+django-debug-toolbar
+django-pdb
+coverage>=3.6
+django-discover-runner>=0.2.2
+model-mommy
+setuptools>=0.8
+mock
+ipython
+yolk
+
