@@ -13,9 +13,6 @@ $ python manage.py runserver
 $ python manage.py startapp --template=core app_name
 ```
 
-[Leia](https://github.com/lucassimon/django-app-template/)
-
-
 # Coding Style
 
 ## PEP 8
