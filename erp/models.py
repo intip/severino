@@ -1,4 +1,5 @@
 from django.db import models
+from .singleton import SingletonModel
 
 
 class Funcionario(models.Model):
@@ -8,12 +9,7 @@ class Funcionario(models.Model):
     cargo = models.CharField(max_length=200)
     carga_mensal = models.IntegerField()
 
-    def __unicode__(self):
-        return self.nome
-
-
-class Empresa(models.Model):
-    nome = models.CharField(max_length=200)
+    gestor = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.nome
@@ -21,8 +17,15 @@ class Empresa(models.Model):
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.nome
+
+
+class Contato(models.Model):
+    nome = models.CharField(max_length=200)
     email = models.EmailField()
-    empresa = models.ForeignKey(Empresa)
+    cliente = models.ForeignKey(Cliente)
 
     def __unicode__(self):
         return self.nome
@@ -30,7 +33,7 @@ class Cliente(models.Model):
 
 class Projeto(models.Model):
     nome = models.CharField(max_length=200)
-    empresa = models.ForeignKey(Empresa, null=True)
+    empresa = models.ForeignKey(Cliente, null=True)
     estimativa_horas = models.FloatField()
     data_entrega = models.DateField()
     recursos = models.ManyToManyField(Funcionario)
@@ -46,6 +49,21 @@ class Apontamento(models.Model):
     projeto = models.ForeignKey(Projeto)
     data = models.DateField()
     horas = models.FloatField()
+
+
+class Empresa(SingletonModel):
+    nome = models.CharField(max_length=33)
+
+    # Custos Operacionais
+
+    def __unicode__(self):
+        return self.nome
+
+
+class CustoMensal(models.Model):
+    nome = models.CharField(max_length=20)
+    valor = models.IntegerField()
+    empresa = models.ForeignKey(Empresa)
 
 
 def foo():
