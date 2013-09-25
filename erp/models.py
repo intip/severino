@@ -36,6 +36,10 @@ class Contato(models.Model):
 class Projeto(models.Model):
     nome = models.CharField(max_length=200)
 
+    descricao = models.TextField(
+        blank=True
+    )
+
     empresa = models.ForeignKey(
         Cliente,
         null=True,
@@ -48,11 +52,13 @@ class Projeto(models.Model):
     )
 
     valor_cobrado = models.FloatField(
-        blank=True
+        blank=True,
+        null=True
     )
 
     custos_extra = models.FloatField(
-        blank=True
+        blank=True,
+        null=True
     )
 
     STATUS = (
@@ -76,7 +82,10 @@ class Projeto(models.Model):
         default='sc',
     )
 
-    estimativa_horas = models.FloatField()
+    estimativa_horas = models.FloatField(
+        blank=True,
+        null=True
+    )
 
     data_inicio = models.DateField(
         blank=True,
@@ -113,6 +122,18 @@ class Projeto(models.Model):
 
     def __unicode__(self):
         return self.nome
+
+
+class Arquivo(models.Model):
+    nome = models.CharField(
+        max_length=30
+    )
+
+    arquivo = models.FileField(
+        upload_to="arquivos"
+    )
+
+    projeto = models.ForeignKey(Projeto)
 
 
 class Apontamento(models.Model):

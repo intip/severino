@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.admin import site
 
 from .models import (Cliente, Funcionario, Projeto, Contato, Apontamento,
-                     Empresa, CustoMensal)
+                     Empresa, CustoMensal, Arquivo)
 
 
 class CustoMensalInline(admin.TabularInline):
@@ -18,7 +18,15 @@ class EmpresaAdmin(admin.ModelAdmin):
     ]
 
 
+class ArquivoInline(admin.TabularInline):
+    model = Arquivo
+
+
 class ProjetoAdmin(admin.ModelAdmin):
+    inlines = [
+        ArquivoInline
+    ]
+
     fieldsets = (
         (None, {
             'fields': (
@@ -26,17 +34,18 @@ class ProjetoAdmin(admin.ModelAdmin):
                 'empresa',
                 'recursos',
                 'status',
+                'descricao',
             )
         }),
         ('Cronograma', {
             'fields': (
                 'estimativa_horas',
-                'data_inicio',
-                'data_inicio_real',
-                'data_entrega_interna',
-                'data_fim_ajustes_internos',
-                'data_entrega_cliente',
-                'data_entrega',
+                ('data_inicio', 'data_inicio_real', 'data_entrega_interna'),
+                (
+                    'data_fim_ajustes_internos',
+                    'data_entrega_cliente',
+                    'data_entrega',
+                )
             )
         }),
         ('Dados Financeiros', {
