@@ -38,6 +38,14 @@ class ProjetoAdmin(admin.ModelAdmin):
                 ('empresa', 'status'),
             )
         }),
+        (u'Escopo', {
+            'fields': (
+                'tipo_escopo',
+                ('data_envio_escopo', 'data_aceite_escopo'),
+                'descricao_escopo',
+                'anexo_escopo',
+            )
+        }),
         (u'Orçamento', {
             'fields': (
                 ('solicitante', 'data_solicitacao'),
@@ -46,10 +54,10 @@ class ProjetoAdmin(admin.ModelAdmin):
                 'anexo_orcamento',
             )
         }),
-        (u'Escopo', {
+        (u'Proposta', {
             'fields': (
-                ('tipo_escopo', 'anexo_escopo'),
-                ('aceito_pelo_cliente', 'data_envio_escopo',),
+                ('data_envio_proposta', 'data_aceite_proposta'),
+                'anexo_proposta',
             )
         }),
         ('Cronograma', {
@@ -72,6 +80,15 @@ class ProjetoAdmin(admin.ModelAdmin):
             )
         }),
     )
+
+    list_display = (
+        'nome',
+        'empresa',
+        'status',
+        'estimativa_horas',
+        'data_entrega'
+    )
+
 
 site.register(Empresa, EmpresaAdmin)
 site.register(Projeto, ProjetoAdmin)

@@ -50,7 +50,7 @@ class Projeto(models.Model):
         ('sc', 'Solicitado pelo cliente'),
         ('ee', 'Elaborando escopo'),
         ('or', 'Orçamento sendo feito'),
-        ('aa', u'Aguardando liberação'),
+        ('aa', u'Aguardando aceite proposta'),
         ('ar', 'Sem recursos'),
         ('de', 'Em desenvolvimento'),
         ('te', 'Fase de testes'),
@@ -127,8 +127,37 @@ class Projeto(models.Model):
         verbose_name=u"Data de envio do escopo"
     )
 
-    aceito_pelo_cliente = models.BooleanField(
-        default=False
+    data_aceite_escopo = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name=u"Data de aceite do escopo"
+    )
+
+    descricao_escopo = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name=u"Descrição pelo cliente",
+        help_text=u"Aqui pode ser inserido o pedido inicial do cliente."
+    )
+
+    # Proposta
+    data_envio_proposta = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name=u"Data de envio",
+    )
+
+    data_aceite_proposta = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name=u"Data de aceite",
+    )
+
+    anexo_proposta = models.FileField(
+        blank=True,
+        null=True,
+        verbose_name="Proposta atualizada",
+        upload_to="proposta"
     )
 
     # Financeiro
