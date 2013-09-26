@@ -46,21 +46,6 @@ class Projeto(models.Model):
         verbose_name=u"Cliente",
     )
 
-    recursos = models.ManyToManyField(
-        Funcionario,
-        blank=True
-    )
-
-    valor_cobrado = models.FloatField(
-        blank=True,
-        null=True
-    )
-
-    custos_extra = models.FloatField(
-        blank=True,
-        null=True
-    )
-
     STATUS = (
         ('sc', 'Solicitado pelo cliente'),
         ('ee', 'Elaborando escopo'),
@@ -80,6 +65,94 @@ class Projeto(models.Model):
         max_length=2,
         choices=STATUS,
         default='sc',
+    )
+
+    # Dados do orçamento
+    solicitante = models.ForeignKey(
+        Contato,
+        null=True,
+        blank=True,
+    )
+
+    data_solicitacao = models.DateField(
+        verbose_name=u"Data de solicitação",
+        blank=True,
+        null=True,
+    )
+
+    data_entrega_orcamento = models.DateField(
+        verbose_name="Entrega",
+        help_text=u"Data em que o orçamento foi entregue ao cliente.",
+        blank=True,
+        null=True
+    )
+
+    descricao_orcamento = models.TextField(
+        verbose_name=u"Descrição",
+        blank=True,
+    )
+
+    anexo_orcamento = models.FileField(
+        upload_to="orcamento",
+        blank=True,
+        null=True,
+        verbose_name=u"Orçamento atual"
+    )
+
+    # Escopo
+
+    TIPOS_ESCOPO = (
+        ("cl", "Feito pelo cliente"),
+        ("in", "Elaborado pela Intip")
+    )
+
+    tipo_escopo = models.CharField(
+        max_length=2,
+        choices=TIPOS_ESCOPO,
+        verbose_name="Tipo de escopo",
+        blank=True,
+        null=True,
+    )
+
+    anexo_escopo = models.FileField(
+        upload_to="escopo",
+        verbose_name=u"Escopo atualizado",
+        blank=True,
+        null=True
+    )
+
+    data_envio_escopo = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name=u"Data de envio do escopo"
+    )
+
+    aceito_pelo_cliente = models.BooleanField(
+        default=False
+    )
+
+    # Financeiro
+    valor_cobrado = models.FloatField(
+        blank=True,
+        null=True,
+        verbose_name=u"Valor bruto faturado",
+    )
+
+    valor_liquido = models.FloatField(
+        blank=True,
+        null=True,
+        verbose_name=u"Valor líquido recebido",
+    )
+
+    custos_extra = models.FloatField(
+        blank=True,
+        null=True
+    )
+
+    # Cronograma
+    recursos = models.ManyToManyField(
+        Funcionario,
+        blank=True
     )
 
     estimativa_horas = models.FloatField(
@@ -118,6 +191,13 @@ class Projeto(models.Model):
         verbose_name=u'Entrega final',
         blank=True,
         null=True,
+    )
+
+    anexo_cronograma = models.FileField(
+        verbose_name=u"Cronograma atualizado",
+        blank=True,
+        null=True,
+        upload_to="cronograma"
     )
 
     def __unicode__(self):

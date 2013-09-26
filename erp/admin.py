@@ -1,3 +1,5 @@
+# coding: utf8
+
 from django.contrib import admin
 from django.contrib.admin import site
 
@@ -20,6 +22,7 @@ class EmpresaAdmin(admin.ModelAdmin):
 
 class ArquivoInline(admin.TabularInline):
     model = Arquivo
+    extra = 1
 
 
 class ProjetoAdmin(admin.ModelAdmin):
@@ -31,10 +34,22 @@ class ProjetoAdmin(admin.ModelAdmin):
         (None, {
             'fields': (
                 'nome',
-                'empresa',
-                'recursos',
-                'status',
                 'descricao',
+                ('empresa', 'status'),
+            )
+        }),
+        (u'Orçamento', {
+            'fields': (
+                ('solicitante', 'data_solicitacao'),
+                'data_entrega_orcamento',
+                'descricao_orcamento',
+                'anexo_orcamento',
+            )
+        }),
+        (u'Escopo', {
+            'fields': (
+                ('tipo_escopo', 'anexo_escopo'),
+                ('aceito_pelo_cliente', 'data_envio_escopo',),
             )
         }),
         ('Cronograma', {
@@ -45,12 +60,14 @@ class ProjetoAdmin(admin.ModelAdmin):
                     'data_fim_ajustes_internos',
                     'data_entrega_cliente',
                     'data_entrega',
-                )
+                ),
+                'recursos',
+                'anexo_cronograma',
             )
         }),
         ('Dados Financeiros', {
             'fields': (
-                'valor_cobrado',
+                ('valor_cobrado', 'valor_liquido'),
                 'custos_extra',
             )
         }),
