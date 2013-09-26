@@ -275,6 +275,36 @@ class CustoMensal(models.Model):
     empresa = models.ForeignKey(Empresa)
 
 
+class Atendimento(models.Model):
+    descricao = models.TextField(
+        verbose_name=u"Descrição"
+    )
+
+    cliente = models.ForeignKey(Cliente)
+
+    solicitante = models.ForeignKey(Contato)
+
+    recursos = models.ManyToManyField(
+        Funcionario,
+        blank=True,
+        null=True
+    )
+
+    STATUS = (
+        ("pe", "Pendente"),
+        ("de", "Em desenvolvimento"),
+        ("en", "Entregue"),
+        ("ap", "Aprovado pelo cliente")
+    )
+
+    status = models.CharField(
+        max_length=2,
+        choices=STATUS,
+        blank=True,
+        null=True,
+    )
+
+
 def foo():
     for projeto in Projeto.objects.all():
         print projeto.nome
