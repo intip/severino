@@ -232,6 +232,16 @@ class Projeto(models.Model):
     def __unicode__(self):
         return self.nome
 
+    created = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Criado em"
+    )
+
+    modified = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Modificado em"
+    )
+
 
 class Arquivo(models.Model):
     nome = models.CharField(

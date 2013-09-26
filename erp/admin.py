@@ -86,7 +86,9 @@ class ProjetoAdmin(admin.ModelAdmin):
         'empresa',
         'status',
         'estimativa_horas',
-        'data_entrega'
+        'data_entrega',
+        'created',
+        'modified',
     )
 
 
