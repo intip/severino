@@ -245,7 +245,7 @@ class Projeto(models.Model):
 
 class Arquivo(models.Model):
     nome = models.CharField(
-        max_length=30
+        max_length=90
     )
 
     arquivo = models.FileField(
@@ -303,6 +303,10 @@ class Atendimento(models.Model):
         blank=True,
         null=True,
     )
+
+
+class Comentario(models.Model):
+    pass
 
 
 def foo():
