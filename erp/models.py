@@ -330,6 +330,12 @@ class ComentarioAtendimento(models.Model):
         blank=True,
     )
 
+    autor = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True
+    )
+
     created = models.DateTimeField(
         auto_now_add=True,
         verbose_name="Criado em"
