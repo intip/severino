@@ -276,6 +276,10 @@ class CustoMensal(models.Model):
 
 
 class Atendimento(models.Model):
+    titulo = models.CharField(
+        max_length=60
+    )
+
     descricao = models.TextField(
         verbose_name=u"Descrição"
     )
@@ -304,9 +308,35 @@ class Atendimento(models.Model):
         null=True,
     )
 
+    created = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Criado em"
+    )
 
-class Comentario(models.Model):
-    pass
+    modified = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Modificado em"
+    )
+
+    def __unicode__(self):
+        return self.titulo
+
+
+class ComentarioAtendimento(models.Model):
+    atendimento = models.ForeignKey(Atendimento)
+
+    texto = models.TextField(
+        verbose_name=u"Comentário",
+        blank=True,
+    )
+
+    created = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Criado em"
+    )
+
+    class Meta:
+        verbose_name = u"Comentário"
 
 
 def foo():

@@ -4,7 +4,8 @@ from django.contrib import admin
 from django.contrib.admin import site
 
 from .models import (Cliente, Funcionario, Projeto, Contato, Apontamento,
-                     Empresa, CustoMensal, Arquivo, Atendimento)
+                     Empresa, CustoMensal, Arquivo, Atendimento,
+                     ComentarioAtendimento)
 
 
 class CustoMensalInline(admin.TabularInline):
@@ -92,13 +93,30 @@ class ProjetoAdmin(admin.ModelAdmin):
     )
 
 
+class ComentarioInline(admin.TabularInline):
+    model = ComentarioAtendimento
+    extra = 1
+
+
+class AtendimentoAdmin(admin.ModelAdmin):
+    inlines = [ComentarioInline]
+
+    list_display = (
+        'titulo',
+        'cliente',
+        'solicitante',
+        'created',
+        'modified'
+    )
+
+
 site.register(Empresa, EmpresaAdmin)
 site.register(Projeto, ProjetoAdmin)
+site.register(Atendimento, AtendimentoAdmin)
 
 site.register([
     Cliente,
     Funcionario,
     Contato,
     Apontamento,
-    Atendimento,
 ])
