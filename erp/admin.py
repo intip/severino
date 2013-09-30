@@ -103,6 +103,7 @@ class AtendimentoAdmin(admin.ModelAdmin):
 
     list_display = (
         'titulo',
+        'status',
         'cliente',
         'solicitante',
         'created',
