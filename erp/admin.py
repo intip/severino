@@ -110,6 +110,8 @@ class AtendimentoAdmin(admin.ModelAdmin):
         'modified'
     )
 
+    list_filter = ('cliente', 'status', 'created')
+
 
 site.register(Empresa, EmpresaAdmin)
 site.register(Projeto, ProjetoAdmin)
