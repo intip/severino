@@ -318,6 +318,9 @@ class Atendimento(models.Model):
         verbose_name="Modificado em"
     )
 
+    class Meta:
+        ordering = ["-status"]
+
     def __unicode__(self):
         return self.titulo
 
