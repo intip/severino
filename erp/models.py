@@ -298,7 +298,8 @@ class Atendimento(models.Model):
         ("pe", "Pendente"),
         ("de", "Em desenvolvimento"),
         ("en", "Entregue"),
-        ("ap", "Aprovado pelo cliente")
+        ("ap", "Aprovado pelo cliente"),
+        ("ac", "Aguardando Cliente"),
     )
 
     status = models.CharField(
